@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package teste;
+package br.edu.ifsul.modelo;
 
 /**
  *
  * @author diego
  */
-public class NewClass {
+public class Cliente {
     
 }

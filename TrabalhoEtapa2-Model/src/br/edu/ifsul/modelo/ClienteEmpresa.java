@@ -7,8 +7,15 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 /**
  *
@@ -17,10 +24,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cliente_empresa")
 public class ClienteEmpresa extends Cliente implements Serializable{
+    @NotNull(message = "O CNPJ deve ser informado")
+    @Column(name = "cnpj", length = 14, nullable = false)
     private int cnpj;
+    @NotBlank(message = "O Nome do Contato deve ser informado")
+    @Length(max = 50, message = "O Nome do Contato não deve possuir mais de {max} caracteres")
+    @Column(name = "nome_contato", length = 50, nullable = false)
     private String nome_contato;
+    @NotBlank(message = "O Celular do Contato deve ser informado")
+    @Length(max = 14, message = "O Celular do Contato não deve possuir mais de {max} caracteres")
+    @Column(name = "celular_contato", length = 14, nullable = false)
     private String celular_contato;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fundacao", nullable = false)
     private Date fundacao;
+    @NotBlank(message = "O Razão Social deve ser informado")
+    @Length(max = 50, message = "O Razão Social não deve possuir mais de {max} caracteres")
+    @Column(name = "razao_social", length = 50, nullable = false)
     private String razao_social;
 
     /**

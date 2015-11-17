@@ -14,6 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -45,11 +48,13 @@ abstract class Cliente implements Serializable {
     @Length(max = 14, message = "O Telefone não deve possuir mais de {max} caracteres")
     @Column(name = "telefone", length = 14, nullable = false)
     private String telefone;
-
-    //@@@@AJUSTAR
-    private Date data_cadastro;
-    //@@@@AJUSTAR
-    private Boolean ativo;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_cadastro", nullable = false)
+    private Date data_cadastro; //Preenche automatico
+    @NotNull
+    @Column(name = "ativo", nullable = false)
+    private Boolean ativo; //Preenche automatico
 
     /**
      * @return the id

@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
@@ -29,9 +32,12 @@ public class ClienteComum extends Cliente implements Serializable{
     @Length(max = 14, message = "O CPF não deve possuir mais de {max} digitos")
     @Column(name = "cpf", length = 14, nullable = false, unique = true)
     private String cpf;
-    //@@@AJUSTAR
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "nascimento", nullable = false)
     private Date nascimento;
-    //@@@AJUSTAR
+    @NotNull
+    @Column(name = "spc", nullable = false)
     private Boolean spc;
 
     /**

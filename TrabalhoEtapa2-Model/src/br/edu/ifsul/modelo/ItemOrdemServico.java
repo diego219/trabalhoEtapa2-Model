@@ -6,12 +6,14 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,16 +23,20 @@ import javax.persistence.Table;
 @Table(name = "item_ordem_servico")
 public class ItemOrdemServico implements Serializable{
     @Id
-    @SequenceGenerator(name = "seq_item_ordem_servico", sequenceName = "seq_item_ordem_servico", allocationSize = 1)
+    @SequenceGenerator(name = "seq_item_ordem_servico", sequenceName = "seq_item_ordem_servico_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_item_ordem_servico", strategy = GenerationType.SEQUENCE)
     private int id;
-    //@@@AJUSTAR
+    @NotNull(message = "A Quantidade deve ser informada")
+    @Column(name = "quantidade", length = 10, nullable = false)
     private int quantidade;
-    //@@@AJUSTAR
+    @NotNull(message = "O Desconto deve ser informado")
+    @Column(name = "desconto", columnDefinition = "decimal(9,2)", nullable = false)
     private Double desconto;
-    //@@@AJUSTAR
+    @NotNull(message = "O Acréscimo deve ser informada")
+    @Column(name = "acrescimo", columnDefinition = "decimal(9,2)", nullable = false)
     private Double acrescimo;
-    //@@@AJUSTAR
+    @NotNull(message = "O Valor Unitário deve ser informado")
+    @Column(name = "unitario", columnDefinition = "decimal(9,2)", nullable = false)
     private Double unitario;
 
     /**

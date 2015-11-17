@@ -6,15 +6,30 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author diego
  */
 public class Referencia implements Serializable{
+    @NotBlank(message = "O Nome deve ser informado")
+    @Length(max = 50, message = "O Nome não deve possuir mais de {max} caracteres")
+    @Column(name = "nome", length = 50, nullable = false)
     private String nome;
+    @NotBlank(message = "O Telefone deve ser informado")
+    @Length(max = 14, message = "O Telefone não deve possuir mais de {max} caracteres")
+    @Column(name = "telefone", length = 14, nullable = false)
     private String telefone;
+    @NotBlank(message = "O Celular deve ser informado")
+    @Length(max = 14, message = "O Celular não deve possuir mais de {max} caracteres")
+    @Column(name = "celular", length = 14, nullable = false)
     private String celular;
+    @NotBlank(message = "O Grau de Parentesco deve ser informado")
+    @Length(max = 50, message = "O Grau de Parentesco deve possuir mais de {max} caracteres")
+    @Column(name = "parentesco", length = 50, nullable = false)
     private String parentesco;
 
     /**

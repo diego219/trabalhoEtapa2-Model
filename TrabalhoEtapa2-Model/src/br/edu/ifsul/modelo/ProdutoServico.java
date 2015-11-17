@@ -7,17 +7,43 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author diego
  */
 public class ProdutoServico implements Serializable{
+    @Id
+    @SequenceGenerator(name = "seq_produto_servico", sequenceName = "seq_produto_servico_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_produto_servico", strategy = GenerationType.SEQUENCE)
     private int id;
+    @NotBlank(message = "A Descrição deve ser informada")
+    @Length(max = 50, message = "A Descrição não deve possuir mais de {max} caracteres")
+    @Column(name = "descricao", length = 50, nullable = false)
     private String descricao;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_cadastro", nullable = false)
     private Date data_cadastro;
+    @NotNull(message = "O Valor de Custo deve ser informado")
+    @Column(name = "valor_custo", nullable = false, columnDefinition = "decimal(9,2)")
     private Double valor_custo;
+    @NotNull(message = "O Valor de Acréscimo deve ser informado")
+    @Column(name = "acrescimo", nullable = false, columnDefinition = "decimal(9,2)")
     private Double valor_unitario;
+    @NotBlank(message = "A Unidade deve ser informada")
+    @Length(max = 2, message = "A Unidade não deve possuir mais de {max} caracteres")
+    @Column(name = "unidade", length = 2, nullable = false)
     private String unidade;
 
     /**

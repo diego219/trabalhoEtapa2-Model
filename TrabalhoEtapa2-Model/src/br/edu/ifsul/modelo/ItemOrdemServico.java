@@ -5,10 +5,128 @@
  */
 package br.edu.ifsul.modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  *
  * @author diego
  */
-public class ItemOrdemServico {
-    
+@Entity
+@Table(name = "item_ordem_servico")
+public class ItemOrdemServico implements Serializable{
+    @Id
+    @SequenceGenerator(name = "seq_item_ordem_servico", sequenceName = "seq_item_ordem_servico", allocationSize = 1)
+    @GeneratedValue(generator = "seq_item_ordem_servico", strategy = GenerationType.SEQUENCE)
+    private int id;
+    //@@@AJUSTAR
+    private int quantidade;
+    //@@@AJUSTAR
+    private Double desconto;
+    //@@@AJUSTAR
+    private Double acrescimo;
+    //@@@AJUSTAR
+    private Double unitario;
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the quantidade
+     */
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    /**
+     * @return the desconto
+     */
+    public Double getDesconto() {
+        return desconto;
+    }
+
+    /**
+     * @param desconto the desconto to set
+     */
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
+    }
+
+    /**
+     * @return the acrescimo
+     */
+    public Double getAcrescimo() {
+        return acrescimo;
+    }
+
+    /**
+     * @param acrescimo the acrescimo to set
+     */
+    public void setAcrescimo(Double acrescimo) {
+        this.acrescimo = acrescimo;
+    }
+
+    /**
+     * @return the unitario
+     */
+    public Double getUnitario() {
+        return unitario;
+    }
+
+    /**
+     * @param unitario the unitario to set
+     */
+    public void setUnitario(Double unitario) {
+        this.unitario = unitario;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemOrdemServico other = (ItemOrdemServico) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ID="+id;
+    }
 }

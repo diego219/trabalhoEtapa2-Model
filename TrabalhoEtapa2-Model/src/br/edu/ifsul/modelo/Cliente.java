@@ -6,12 +6,19 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -55,6 +62,13 @@ abstract class Cliente implements Serializable {
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo; //Preenche automatico
+    @NotNull(message = "A cidade deve ser informada")
+    @ManyToOne
+    @JoinColumn(name = "cidade",referencedColumnName = "id",nullable = false)
+    private Cidade cidade;
+    @OneToMany(mappedBy = "ordem_servico",cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)    
+    private List<OrdemServico> ordens_servico = new ArrayList<>();
 
     /**
      * @return the id
@@ -152,6 +166,28 @@ abstract class Cliente implements Serializable {
      */
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+    
+    /**
+     * @return the cidade
+     */
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public List<OrdemServico> getOrdens_servico() {
+        return ordens_servico;
+    }
+
+    public void setOrdens_servico(List<OrdemServico> ordens_servico) {
+        this.ordens_servico = ordens_servico;
     }
 
     @Override

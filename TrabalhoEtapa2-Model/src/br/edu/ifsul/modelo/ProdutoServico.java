@@ -8,10 +8,12 @@ package br.edu.ifsul.modelo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -22,6 +24,8 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author diego
  */
+@Entity
+@Table(name = "produto_servico")
 public class ProdutoServico implements Serializable{
     @Id
     @SequenceGenerator(name = "seq_produto_servico", sequenceName = "seq_produto_servico_id", allocationSize = 1)
@@ -39,7 +43,7 @@ public class ProdutoServico implements Serializable{
     @Column(name = "valor_custo", nullable = false, columnDefinition = "decimal(9,2)")
     private Double valor_custo;
     @NotNull(message = "O Valor de Acréscimo deve ser informado")
-    @Column(name = "acrescimo", nullable = false, columnDefinition = "decimal(9,2)")
+    @Column(name = "valor_unitario", nullable = false, columnDefinition = "decimal(9,2)")
     private Double valor_unitario;
     @NotBlank(message = "A Unidade deve ser informada")
     @Length(max = 2, message = "A Unidade não deve possuir mais de {max} caracteres")

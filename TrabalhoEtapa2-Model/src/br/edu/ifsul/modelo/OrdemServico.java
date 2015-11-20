@@ -6,12 +6,21 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -21,13 +30,15 @@ import org.hibernate.validator.constraints.Length;
  *
  * @author diego
  */
+@Entity
+@Table(name = "ordem_servico")
 public class OrdemServico implements Serializable{
     @Id
     @SequenceGenerator(name = "seq_ordem_servico", sequenceName = "seq_ordem_servico_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_ordem_servico", strategy = GenerationType.SEQUENCE)
     private int id;
     @NotNull(message = "O Valor Total deve ser informado")
-    @Column(name = "unitario", columnDefinition = "decimal(12,2)", nullable = false)
+    @Column(name = "valor_total", columnDefinition = "decimal(12,2)", nullable = false)
     private Double valor_total;
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -41,8 +52,15 @@ public class OrdemServico implements Serializable{
     @Column(name = "data_entrega", nullable = true)
     private Date data_entrega;
     @Length(max = 150, message = "A Observação não deve possuir mais de {max} caracteres")
-    @Column(name = "nome", length = 150, nullable = true)
+    @Column(name = "observacoes", length = 150, nullable = true)
     private String observacoes;
+    @NotNull(message = "O Cliente deve ser informada")
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
+    private Cliente cliente;
+    @OneToMany(mappedBy = "item_ordem_servico",cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)    
+    private List<ItemOrdemServico> itens_ordem_servico = new ArrayList<>();
 
     /**
      * @return the id
@@ -126,6 +144,22 @@ public class OrdemServico implements Serializable{
      */
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<ItemOrdemServico> getItens_ordem_servico() {
+        return itens_ordem_servico;
+    }
+
+    public void setItens_ordem_servico(List<ItemOrdemServico> itens_ordem_servico) {
+        this.itens_ordem_servico = itens_ordem_servico;
     }
 
     @Override

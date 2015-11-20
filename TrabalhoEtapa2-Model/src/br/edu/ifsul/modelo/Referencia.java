@@ -7,6 +7,15 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,7 +23,13 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author diego
  */
+@Entity
+@Table(name = "referencia")
 public class Referencia implements Serializable{
+    @Id
+    @SequenceGenerator(name = "seq_referencia", sequenceName = "seq_referencia_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_referencia", strategy = GenerationType.SEQUENCE)
+    private int id;
     @NotBlank(message = "O Nome deve ser informado")
     @Length(max = 50, message = "O Nome não deve possuir mais de {max} caracteres")
     @Column(name = "nome", length = 50, nullable = false)
@@ -31,7 +46,19 @@ public class Referencia implements Serializable{
     @Length(max = 50, message = "O Grau de Parentesco deve possuir mais de {max} caracteres")
     @Column(name = "parentesco", length = 50, nullable = false)
     private String parentesco;
+    @NotNull(message = "O Cliente Comum deve ser informado")
+    @ManyToOne
+    @JoinColumn(name = "cliente_comum_id", referencedColumnName = "id", nullable = false)
+    private ClienteComum cliente_comum;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     /**
      * @return the nome
      */
@@ -86,5 +113,40 @@ public class Referencia implements Serializable{
      */
     public void setParentesco(String parentesco) {
         this.parentesco = parentesco;
+    }
+
+    public ClienteComum getCliente_comum() {
+        return cliente_comum;
+    }
+
+    public void setCliente_comum(ClienteComum cliente_comum) {
+        this.cliente_comum = cliente_comum;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Referencia other = (Referencia) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 }

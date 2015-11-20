@@ -6,11 +6,16 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +44,9 @@ public class ClienteComum extends Cliente implements Serializable{
     @NotNull
     @Column(name = "spc", nullable = false)
     private Boolean spc;
+    @OneToMany(mappedBy = "cliente_comum",cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)    
+    private List<Referencia> referencias = new ArrayList<>();
 
     /**
      * @return the cpf
@@ -82,5 +90,12 @@ public class ClienteComum extends Cliente implements Serializable{
         this.spc = spc;
     }
     
+    public List<Referencia> getReferencias() {
+        return referencias;
+    }
+
+    public void setReferencias(List<Referencia> referencias) {
+        this.referencias = referencias;
+    }
     
 }

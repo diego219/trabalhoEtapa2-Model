@@ -9,19 +9,21 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 /**
  *
  * @author diego
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "cliente_empresa")
 public class ClienteEmpresa extends Cliente implements Serializable{
     @NotNull(message = "O CNPJ deve ser informado")

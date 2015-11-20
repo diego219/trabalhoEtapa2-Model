@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -38,6 +40,14 @@ public class ItemOrdemServico implements Serializable{
     @NotNull(message = "O Valor Unitário deve ser informado")
     @Column(name = "unitario", columnDefinition = "decimal(9,2)", nullable = false)
     private Double unitario;
+    @NotNull(message = "A O.S. deve ser informada")
+    @ManyToOne
+    @JoinColumn(name = "ordem_servico", referencedColumnName = "id", nullable = false)
+    private OrdemServico ordem_servico;
+    @NotNull(message = "O Produto/Serviço deve ser informado")
+    @ManyToOne
+    @JoinColumn(name = "produto_servico",referencedColumnName = "id",nullable = false)
+    private ProdutoServico produto_servico;
 
     /**
      * @return the id
@@ -107,6 +117,22 @@ public class ItemOrdemServico implements Serializable{
      */
     public void setUnitario(Double unitario) {
         this.unitario = unitario;
+    }
+
+    public OrdemServico getOrdem_servico() {
+        return ordem_servico;
+    }
+
+    public void setOrdem_servico(OrdemServico ordem_servico) {
+        this.ordem_servico = ordem_servico;
+    }
+
+    public ProdutoServico getProduto_servico() {
+        return produto_servico;
+    }
+
+    public void setProduto_servico(ProdutoServico produto_servico) {
+        this.produto_servico = produto_servico;
     }
 
     @Override

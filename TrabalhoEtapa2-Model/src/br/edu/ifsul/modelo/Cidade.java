@@ -126,7 +126,7 @@ public class Cidade implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + this.id;
+        hash = 43 * hash + this.id;
         return hash;
     }
 

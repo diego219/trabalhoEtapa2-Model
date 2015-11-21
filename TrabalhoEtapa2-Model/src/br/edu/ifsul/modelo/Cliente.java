@@ -66,7 +66,7 @@ abstract class Cliente implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cidade",referencedColumnName = "id",nullable = false)
     private Cidade cidade;
-    @OneToMany(mappedBy = "ordem_servico",cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)    
     private List<OrdemServico> ordens_servico = new ArrayList<>();
 

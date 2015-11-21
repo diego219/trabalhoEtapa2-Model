@@ -56,9 +56,9 @@ public class OrdemServico implements Serializable{
     private String observacoes;
     @NotNull(message = "O Cliente deve ser informada")
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "cliente", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
-    @OneToMany(mappedBy = "item_ordem_servico",cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "ordem_servico",cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)    
     private List<ItemOrdemServico> itens_ordem_servico = new ArrayList<>();
 

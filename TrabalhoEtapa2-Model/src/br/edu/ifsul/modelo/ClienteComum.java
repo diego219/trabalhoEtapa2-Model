@@ -98,4 +98,12 @@ public class ClienteComum extends Cliente implements Serializable{
         this.referencias = referencias;
     }
     
+    public void adicionarReferencia(Referencia obj){
+        obj.setCliente_comum(this);
+        referencias.add(obj);
+    }
+    
+    public void removerReferencia(int index){
+        referencias.remove(index);
+    }
 }

@@ -46,7 +46,7 @@ public class ClienteEmpresaTest {
             ce.setNome("Empresa");
             ce.setTelefone("99999999");
             ce.setCelular_contato("99999999");
-            ce.setCnpj(99999999);
+            ce.setCnpj("99999999");
             ce.setFundacao(Calendar.getInstance());
             ce.setRazao_social("Razao teste");
             ce.setNome_contato("Joãozinho");

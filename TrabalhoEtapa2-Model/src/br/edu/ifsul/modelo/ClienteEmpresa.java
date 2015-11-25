@@ -28,8 +28,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class ClienteEmpresa extends Cliente implements Serializable {
 
     @NotNull(message = "O CNPJ deve ser informado")
-    @Column(name = "cnpj", length = 14, nullable = false)
-    private int cnpj;
+    @Length(max = 18, message = "O CNPJ não deve possuir mais de {max} caracteres")
+    @Column(name = "cnpj", length = 18, nullable = false)
+    private String cnpj;
     @Length(max = 50, message = "O Nome do Contato não deve possuir mais de {max} caracteres")
     @Column(name = "nome_contato", length = 50, nullable = true)
     private String nome_contato;
@@ -39,22 +40,22 @@ public class ClienteEmpresa extends Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "fundacao", nullable = true)
     private Calendar fundacao;
-    @NotBlank(message = "O Razão Social deve ser informado")
-    @Length(max = 50, message = "O Razão Social não deve possuir mais de {max} caracteres")
+    @NotBlank(message = "A Razão Social deve ser informada")
+    @Length(max = 50, message = "A Razão Social não deve possuir mais de {max} caracteres")
     @Column(name = "razao_social", length = 50, nullable = false)
     private String razao_social;
 
     /**
      * @return the cnpj
      */
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
     /**
      * @param cnpj the cnpj to set
      */
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

@@ -47,7 +47,7 @@ public class ClienteComum extends Cliente implements Serializable{
     @OneToMany(mappedBy = "cliente_comum",cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)    
     private List<Referencia> referencias = new ArrayList<>();
-
+    
     /**
      * @return the cpf
      */

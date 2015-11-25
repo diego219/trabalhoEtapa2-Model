@@ -38,13 +38,11 @@ public class Referencia implements Serializable{
     @Length(max = 14, message = "O Telefone não deve possuir mais de {max} caracteres")
     @Column(name = "telefone", length = 14, nullable = false)
     private String telefone;
-    @NotBlank(message = "O Celular deve ser informado")
     @Length(max = 14, message = "O Celular não deve possuir mais de {max} caracteres")
-    @Column(name = "celular", length = 14, nullable = false)
+    @Column(name = "celular", length = 14, nullable = true)
     private String celular;
-    @NotBlank(message = "O Grau de Parentesco deve ser informado")
     @Length(max = 50, message = "O Grau de Parentesco deve possuir mais de {max} caracteres")
-    @Column(name = "parentesco", length = 50, nullable = false)
+    @Column(name = "parentesco", length = 50, nullable = true)
     private String parentesco;
     @NotNull(message = "O Cliente Comum deve ser informado")
     @ManyToOne

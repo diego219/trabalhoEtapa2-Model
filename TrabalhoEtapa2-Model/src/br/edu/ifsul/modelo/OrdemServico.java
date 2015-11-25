@@ -7,7 +7,7 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,14 +43,14 @@ public class OrdemServico implements Serializable{
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "data_emissao", nullable = false)
-    private Date data_emissao;
-    @NotNull
+    private Calendar data_emissao;
+    @NotNull(message = "A Data de Previsão de Entrega deve ser informada")
     @Temporal(TemporalType.DATE)
     @Column(name = "data_prevista", nullable = false)
-    private Date data_prevista;
+    private Calendar data_prevista;
     @Temporal(TemporalType.DATE)
     @Column(name = "data_entrega", nullable = true)
-    private Date data_entrega;
+    private Calendar data_entrega;
     @Length(max = 150, message = "A Observação não deve possuir mais de {max} caracteres")
     @Column(name = "observacoes", length = 150, nullable = true)
     private String observacoes;
@@ -93,42 +93,42 @@ public class OrdemServico implements Serializable{
     /**
      * @return the data_emissao
      */
-    public Date getData_emissao() {
+    public Calendar getData_emissao() {
         return data_emissao;
     }
 
     /**
      * @param data_emissao the data_emissao to set
      */
-    public void setData_emissao(Date data_emissao) {
+    public void setData_emissao(Calendar data_emissao) {
         this.data_emissao = data_emissao;
     }
 
     /**
      * @return the data_prevista
      */
-    public Date getData_prevista() {
+    public Calendar getData_prevista() {
         return data_prevista;
     }
 
     /**
      * @param data_prevista the data_prevista to set
      */
-    public void setData_prevista(Date data_prevista) {
+    public void setData_prevista(Calendar data_prevista) {
         this.data_prevista = data_prevista;
     }
 
     /**
      * @return the data_entrega
      */
-    public Date getData_entrega() {
+    public Calendar getData_entrega() {
         return data_entrega;
     }
 
     /**
      * @param data_entrega the data_entrega to set
      */
-    public void setData_entrega(Date data_entrega) {
+    public void setData_entrega(Calendar data_entrega) {
         this.data_entrega = data_entrega;
     }
 

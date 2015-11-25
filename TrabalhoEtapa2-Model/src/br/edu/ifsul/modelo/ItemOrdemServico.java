@@ -40,7 +40,6 @@ public class ItemOrdemServico implements Serializable{
     @NotNull(message = "O Valor Unitário deve ser informado")
     @Column(name = "unitario", columnDefinition = "decimal(9,2)", nullable = false)
     private Double unitario;
-    @NotNull(message = "A O.S. deve ser informada")
     @ManyToOne
     @JoinColumn(name = "ordem_servico", referencedColumnName = "id", nullable = false)
     private OrdemServico ordem_servico;

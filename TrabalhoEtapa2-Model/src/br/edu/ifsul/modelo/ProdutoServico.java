@@ -6,7 +6,7 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +38,7 @@ public class ProdutoServico implements Serializable{
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro", nullable = false)
-    private Date data_cadastro;
+    private Calendar data_cadastro;
     @NotNull(message = "O Valor de Custo deve ser informado")
     @Column(name = "valor_custo", nullable = false, columnDefinition = "decimal(9,2)")
     private Double valor_custo;
@@ -81,14 +81,14 @@ public class ProdutoServico implements Serializable{
     /**
      * @return the data_cadastro
      */
-    public Date getData_cadastro() {
+    public Calendar getData_cadastro() {
         return data_cadastro;
     }
 
     /**
      * @param data_cadastro the data_cadastro to set
      */
-    public void setData_cadastro(Date data_cadastro) {
+    public void setData_cadastro(Calendar data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 

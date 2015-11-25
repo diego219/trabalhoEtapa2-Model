@@ -7,7 +7,7 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -61,7 +61,7 @@ abstract class Cliente implements Serializable {
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro", nullable = false)
-    private Date data_cadastro; //Preenche automatico
+    private Calendar data_cadastro; //Preenche automatico
     @NotNull
     @Column(name = "ativo", nullable = false)
     private Boolean ativo; //Preenche automatico
@@ -146,14 +146,14 @@ abstract class Cliente implements Serializable {
     /**
      * @return the data_cadastro
      */
-    public Date getData_cadastro() {
+    public Calendar getData_cadastro() {
         return data_cadastro;
     }
 
     /**
      * @param data_cadastro the data_cadastro to set
      */
-    public void setData_cadastro(Date data_cadastro) {
+    public void setData_cadastro(Calendar data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 

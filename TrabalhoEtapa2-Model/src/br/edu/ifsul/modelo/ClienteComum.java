@@ -7,7 +7,7 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,10 +37,10 @@ public class ClienteComum extends Cliente implements Serializable{
     @Length(max = 14, message = "O CPF não deve possuir mais de {max} digitos")
     @Column(name = "cpf", length = 14, nullable = false, unique = true)
     private String cpf;
-    @NotNull
+    @NotNull(message = "O Nascimento deve ser informado")
     @Temporal(TemporalType.DATE)
     @Column(name = "nascimento", nullable = false)
-    private Date nascimento;
+    private Calendar nascimento;
     @NotNull
     @Column(name = "spc", nullable = false)
     private Boolean spc;
@@ -65,14 +65,14 @@ public class ClienteComum extends Cliente implements Serializable{
     /**
      * @return the nascimento
      */
-    public Date getNascimento() {
+    public Calendar getNascimento() {
         return nascimento;
     }
 
     /**
      * @param nascimento the nascimento to set
      */
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(Calendar nascimento) {
         this.nascimento = nascimento;
     }
 

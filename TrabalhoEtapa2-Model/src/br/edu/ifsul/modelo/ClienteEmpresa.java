@@ -6,7 +6,7 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -25,22 +25,20 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "cliente_empresa")
-public class ClienteEmpresa extends Cliente implements Serializable{
+public class ClienteEmpresa extends Cliente implements Serializable {
+
     @NotNull(message = "O CNPJ deve ser informado")
     @Column(name = "cnpj", length = 14, nullable = false)
     private int cnpj;
-    @NotBlank(message = "O Nome do Contato deve ser informado")
     @Length(max = 50, message = "O Nome do Contato não deve possuir mais de {max} caracteres")
-    @Column(name = "nome_contato", length = 50, nullable = false)
+    @Column(name = "nome_contato", length = 50, nullable = true)
     private String nome_contato;
-    @NotBlank(message = "O Celular do Contato deve ser informado")
     @Length(max = 14, message = "O Celular do Contato não deve possuir mais de {max} caracteres")
-    @Column(name = "celular_contato", length = 14, nullable = false)
+    @Column(name = "celular_contato", length = 14, nullable = true)
     private String celular_contato;
-    @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "fundacao", nullable = false)
-    private Date fundacao;
+    @Column(name = "fundacao", nullable = true)
+    private Calendar fundacao;
     @NotBlank(message = "O Razão Social deve ser informado")
     @Length(max = 50, message = "O Razão Social não deve possuir mais de {max} caracteres")
     @Column(name = "razao_social", length = 50, nullable = false)
@@ -91,14 +89,14 @@ public class ClienteEmpresa extends Cliente implements Serializable{
     /**
      * @return the fundacao
      */
-    public Date getFundacao() {
+    public Calendar getFundacao() {
         return fundacao;
     }
 
     /**
      * @param fundacao the fundacao to set
      */
-    public void setFundacao(Date fundacao) {
+    public void setFundacao(Calendar fundacao) {
         this.fundacao = fundacao;
     }
 
@@ -115,6 +113,5 @@ public class ClienteEmpresa extends Cliente implements Serializable{
     public void setRazao_social(String razao_social) {
         this.razao_social = razao_social;
     }
-    
-    
+
 }

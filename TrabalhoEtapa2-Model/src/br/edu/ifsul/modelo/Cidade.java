@@ -39,14 +39,12 @@ public class Cidade implements Serializable {
     @Column(name = "uf", length = 2, nullable = false)
     private String uf;
 
-    @NotEmpty(message = "O Código de Municipio do IBGE deve ser informado")
     @Length(max = 7, message = "O Código de Municipio do IBGE deve ter no máximo {max} caracteres")
-    @Column(name = "codigo_municipio_ibge", length = 7, nullable = false)
+    @Column(name = "codigo_municipio_ibge", length = 7, nullable = true)
     private String codigo_municipio_ibge;
 
-    @NotEmpty(message = "O Código de Estado do IBGE deve ser informado")
     @Length(max = 2, message = "O Código de Estado do IBGE deve ter no máximo {max} caracteres")
-    @Column(name = "codigo_estado_ibge", length = 2, nullable = false)
+    @Column(name = "codigo_estado_ibge", length = 2, nullable = true)
     private String codigo_estado_ibge;
 
     public Cidade() {

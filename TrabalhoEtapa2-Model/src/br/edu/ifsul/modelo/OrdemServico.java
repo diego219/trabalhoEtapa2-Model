@@ -161,6 +161,15 @@ public class OrdemServico implements Serializable{
     public void setItens_ordem_servico(List<ItemOrdemServico> itens_ordem_servico) {
         this.itens_ordem_servico = itens_ordem_servico;
     }
+    
+    public void adicionarItemOrdemServico(ItemOrdemServico obj){
+        obj.setOrdem_servico(this);
+        itens_ordem_servico.add(obj);
+    }
+    
+    public void removerItemOrdemServico(int index){
+        itens_ordem_servico.remove(index);
+    }
 
     @Override
     public int hashCode() {

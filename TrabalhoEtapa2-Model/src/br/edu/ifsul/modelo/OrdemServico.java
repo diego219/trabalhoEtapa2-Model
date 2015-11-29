@@ -59,7 +59,7 @@ public class OrdemServico implements Serializable{
     @JoinColumn(name = "cliente", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
     @OneToMany(mappedBy = "ordem_servico",cascade = CascadeType.ALL,
-            orphanRemoval = true, fetch = FetchType.LAZY)    
+            orphanRemoval = true, fetch = FetchType.EAGER)    
     private List<ItemOrdemServico> itens_ordem_servico = new ArrayList<>();
 
     /**

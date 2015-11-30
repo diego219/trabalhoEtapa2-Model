@@ -81,6 +81,9 @@ public class OrdemServico implements Serializable{
      * @return the valor_total
      */
     public Double getValor_total() {
+        if (this.id == null) {
+            return 0.00;
+        }
         return valor_total;
     }
 

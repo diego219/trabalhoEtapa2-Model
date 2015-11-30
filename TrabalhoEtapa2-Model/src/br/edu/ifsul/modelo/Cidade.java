@@ -27,7 +27,7 @@ public class Cidade implements Serializable {
     @Id
     @SequenceGenerator(name = "seq_cidade", sequenceName = "seq_cidade_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_cidade", strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "O nome deve ser informado")
     @Length(max = 50, message = "O nome deve ter no máximo {max} caracteres")
@@ -54,14 +54,14 @@ public class Cidade implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

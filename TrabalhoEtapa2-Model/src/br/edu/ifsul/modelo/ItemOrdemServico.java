@@ -23,7 +23,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "item_ordem_servico")
-public class ItemOrdemServico implements Serializable{
+public class ItemOrdemServico implements Serializable {
+
     @Id
     @SequenceGenerator(name = "seq_item_ordem_servico", sequenceName = "seq_item_ordem_servico_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_item_ordem_servico", strategy = GenerationType.SEQUENCE)
@@ -45,7 +46,7 @@ public class ItemOrdemServico implements Serializable{
     private OrdemServico ordem_servico;
     @NotNull(message = "O Produto/Serviço deve ser informado")
     @ManyToOne
-    @JoinColumn(name = "produto_servico",referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "produto_servico", referencedColumnName = "id", nullable = false)
     private ProdutoServico produto_servico;
 
     /**
@@ -108,6 +109,11 @@ public class ItemOrdemServico implements Serializable{
      * @return the unitario
      */
     public Double getUnitario() {
+        if (this.id == null) {
+            if (this.getProduto_servico() != null) {
+                return this.getProduto_servico().getValor_unitario();
+            }
+        }
         return unitario;
     }
 
@@ -158,6 +164,6 @@ public class ItemOrdemServico implements Serializable{
 
     @Override
     public String toString() {
-        return "ID="+id;
+        return "ID=" + id;
     }
 }

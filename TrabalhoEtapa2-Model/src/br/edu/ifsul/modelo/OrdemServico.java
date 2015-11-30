@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class OrdemServico implements Serializable{
     @Id
     @SequenceGenerator(name = "seq_ordem_servico", sequenceName = "seq_ordem_servico_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_ordem_servico", strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
     @NotNull(message = "O Valor Total deve ser informado")
     @Column(name = "valor_total", columnDefinition = "decimal(12,2)", nullable = false)
     private Double valor_total;
@@ -65,14 +66,14 @@ public class OrdemServico implements Serializable{
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -167,14 +168,14 @@ public class OrdemServico implements Serializable{
         itens_ordem_servico.add(obj);
     }
     
-    public void removerItemOrdemServico(int index){
+    public void removerItemOrdemServico(Integer index){
         itens_ordem_servico.remove(index);
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -187,7 +188,7 @@ public class OrdemServico implements Serializable{
             return false;
         }
         final OrdemServico other = (OrdemServico) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

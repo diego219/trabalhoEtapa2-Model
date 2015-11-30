@@ -27,10 +27,10 @@ public class ItemOrdemServico implements Serializable{
     @Id
     @SequenceGenerator(name = "seq_item_ordem_servico", sequenceName = "seq_item_ordem_servico_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_item_ordem_servico", strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Integer id;
     @NotNull(message = "A Quantidade deve ser informada")
     @Column(name = "quantidade", length = 10, nullable = false)
-    private int quantidade;
+    private Integer quantidade;
     @NotNull(message = "O Desconto deve ser informado")
     @Column(name = "desconto", columnDefinition = "decimal(9,2)", nullable = false)
     private Double desconto;
@@ -51,28 +51,28 @@ public class ItemOrdemServico implements Serializable{
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     /**
      * @return the quantidade
      */
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
     /**
      * @param quantidade the quantidade to set
      */
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
